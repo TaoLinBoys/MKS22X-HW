@@ -4,6 +4,7 @@ public class Recursion{
 	}
 	
 	public double sqrt(double n){
+		if (n<0) throw new IllegalArgumentException();
 		return sqrtH(n,n/2);		
 	}
 	
@@ -16,4 +17,5 @@ public class Recursion{
 	public double PE(double measured, double actual){
 		return ((actual - measured)/actual)*100;
 	}
+
 }
