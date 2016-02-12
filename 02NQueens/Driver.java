@@ -6,7 +6,7 @@ public class Driver{
 	System.out.println(a.toString());
 	a.printBoard();
 
-
+	//a.solve();
 
     }
 }

@@ -8,7 +8,13 @@ public class QueenBoard{
     public boolean solve(){ return solveH(0); }
 
     private boolean solveH(int col){
-	return false;
+	if(col == board.length) return true;
+	for(int i = 0; i < board.length; i++){
+	    if(addQueen(i,col)){
+		return solveH(col+1);
+	    }
+	}
+	return solveH(col-1);
     }
 
     public boolean addQueen(int row, int col){
