@@ -1,14 +1,25 @@
 public class KnightBoard{
-    private int[][]board;
+    private int[][] board;
+	private int moveNum = 1;
 
     public KnightBoard(int size){
 		board = new int[size][size];
     }
 
-    public boolean solve(){return solveH(1,0,0);}
+    public boolean solve(){return solveH(0,0);}
 	
-	private boolean solveH(int moveNum, int x, int y){
-		
+	private boolean solveH(int x, int y){
+		if (moveNum == board.length*board.length){return true;}
+		if (move(x,y,1,2))return solveH(x+1,y+2);
+	}
+	
+	private boolean move(int x, int y, int move1, int move2){
+		if(inRange(x+move1,y+move2)){
+			moveNum++;
+			board[x+move1][y+move2] = moveNum;
+			return true;
+		}
+		return false;
 	}
 
 	private boolean inRange(int x, int y){
