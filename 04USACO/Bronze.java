@@ -22,6 +22,14 @@ public class Bronze{
 					lake[i][j]=line.nextInt();
 				}
 			}
+			
+			while(s.hasNext()){
+				Scanner stomper = new Scanner(s.nextLine());
+				int r = stomper.nextInt();
+				int c = stomper.nextInt();
+				int d = stomper.nextInt();
+				stomp(r,c,d);
+			}
 		}
 		catch(FileNotFoundException e){}
 	}
@@ -29,7 +37,7 @@ public class Bronze{
 	public void stomp(int R_s, int C_s, int D_s){
 		for(int i = R_s-1; i < R_s+2; i++){
 			for(int j = C_s-1; j < C_s+2; j++){
-				
+				lake[i][j]-=D_s;
 			}
 		}
 	}
