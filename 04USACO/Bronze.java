@@ -23,14 +23,12 @@ public class Bronze{
 		}
 	    }
 	    
-	    printLake();
 	    while(s.hasNext()){
 		Scanner stomper = new Scanner(s.nextLine());
 		int r = stomper.nextInt();
 		int c = stomper.nextInt();
 		int d = stomper.nextInt();
 		stomp(r,c,d);
-		printLake();
 	    }
 	}
 	catch(FileNotFoundException e){}
@@ -50,7 +48,6 @@ public class Bronze{
 
     public void stomp(int R_s, int C_s, int D_s){
 	int max = max3by3(R_s,C_s)-D_s;
-	debug(max);
 	for(int i = R_s-1; i < R_s+2; i++){
 	    for(int j = C_s-1; j < C_s+2; j++){
 		if(lake[i][j] > max)lake[i][j]=max;
@@ -76,13 +73,15 @@ public class Bronze{
 		if(E-lake[i][j] > 0)sumD+=(E-lake[i][j]);
 	    }
 	}
-	System.out.println(sumD*72*72);
+	System.out.println(sumD*72*72 + ",7,Lin,Tao");
     }
 	
     public static void main(String[]args){
-	File f = new File("makelake.in");
-	Bronze test = new Bronze(f);
-	test.printLake();
+	if(args.length!=0){
+	    File f = new File(args[0]);
+	    Bronze test = new Bronze(f);
+	    //test.printLake();
+	}
     }
 	
 	
