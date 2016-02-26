@@ -4,6 +4,5 @@ public class Driver{
 	QueenBoard a = new QueenBoard(4);
 
 	a.solve();
-	a.printBoard();
     }
 }

@@ -5,16 +5,26 @@ public class QueenBoard{
 	board = new int[size][size];
     }
 
-    public boolean solve(){ return solveH(0); }
+    public boolean solve(){
+	if(solveH(0)){
+	    printBoard();
+	    return true;
+	}
+	return false;
+    }
 
     private boolean solveH(int col){
 	if(col == board.length) return true;
 	for(int i = 0; i < board.length; i++){
 	    if(addQueen(i,col)){
-		return solveH(col+1);
+		if(solveH(col+1)){
+		    return true;
+		}else{
+		    removeQueen(i,col);
+		}
 	    }
 	}
-	return solveH(col-1);
+	return false;
     }
 
     public boolean addQueen(int row, int col){
@@ -72,7 +82,7 @@ public class QueenBoard{
 	for(int r = 0; r < board.length; r++){
 	    for(int c = 0; c < board[0].length; c++){
 		if(board[r][c]== 0) a+="_  ";
-		if(board[r][c]== -1) a+="/  ";
+		if(board[r][c]== -1) a+="_  ";
 		if(board[r][c]== 1) a+="Q  ";
 	    }
 	    a+="\n";
