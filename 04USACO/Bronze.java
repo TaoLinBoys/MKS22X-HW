@@ -6,9 +6,9 @@ public class Bronze{
     private int[][]lake;
     private int R,C,E,N;
 	
-    public Bronze(){
+    public Bronze(File file){
 	try{
-	    Scanner s = new Scanner(new File("makelake.in"));
+	    Scanner s = new Scanner(file);
 	    Scanner a = new Scanner(s.nextLine());
 	    R = a.nextInt();
 	    C = a.nextInt();
@@ -22,23 +22,38 @@ public class Bronze{
 		    lake[i][j]=line.nextInt();
 		}
 	    }
-			
+	    
+	    printLake();
 	    while(s.hasNext()){
 		Scanner stomper = new Scanner(s.nextLine());
 		int r = stomper.nextInt();
 		int c = stomper.nextInt();
 		int d = stomper.nextInt();
 		stomp(r,c,d);
+		printLake();
 	    }
 	}
 	catch(FileNotFoundException e){}
 	findDepth();
     }
 	
-    public void stomp(int R_s, int C_s, int D_s){
+
+    private int max3by3(int R_s, int C_s){
+	int max = 0;
 	for(int i = R_s-1; i < R_s+2; i++){
 	    for(int j = C_s-1; j < C_s+2; j++){
-		lake[i][j]-=D_s;
+		if(lake[i][j] > max)max=lake[i][j];
+	    }
+	}
+	return max;
+    }
+
+    public void stomp(int R_s, int C_s, int D_s){
+	int max = max3by3(R_s,C_s)-D_s;
+	debug(max);
+	for(int i = R_s-1; i < R_s+2; i++){
+	    for(int j = C_s-1; j < C_s+2; j++){
+		if(lake[i][j] > max)lake[i][j]=max;
 	    }
 	}
     }
@@ -65,14 +80,19 @@ public class Bronze{
     }
 	
     public static void main(String[]args){
-	Bronze test = new Bronze();
-	//test.printLake();
-	//System.out.println(findDepth() + " 7,Lin,Tao");
+	File f = new File("makelake.in");
+	Bronze test = new Bronze(f);
+	test.printLake();
     }
 	
 	
 	
     public void debug(String s){
+	if(DEBUG){
+	    System.out.println(s);
+	}
+    }
+    public void debug(int s){
 	if(DEBUG){
 	    System.out.println(s);
 	}
