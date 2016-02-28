@@ -81,7 +81,7 @@ public class Bronze{
 	    File f = new File(args[0]);
 	    Bronze test = new Bronze(f);
 	    //test.printLake();
-	}else{System.out.println("Give me the name of your input file");}
+	}
     }
 	
 	
