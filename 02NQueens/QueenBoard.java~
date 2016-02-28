@@ -6,7 +6,11 @@ public class QueenBoard{
     }
 
     public boolean solve(){
-	return solveH(0);
+	if(solveH(0)){
+	    printBoard();
+	    return true;
+	}
+	return false;
     }
 
     private boolean solveH(int col){
@@ -72,13 +76,14 @@ public class QueenBoard{
 	return ans;
     }
 
-    public void printSolution(){
+    public void printBoard(){
 	String a = "";
 	int[][] b = board;
 	for(int r = 0; r < board.length; r++){
 	    for(int c = 0; c < board[0].length; c++){
-		if(b[r][c]<= 0) a+="_  ";
-	      	if(b[r][c]== 1) a+="Q  ";
+		if(board[r][c]== 0) a+="_  ";
+		if(board[r][c]== -1) a+="_  ";
+		if(board[r][c]== 1) a+="Q  ";
 	    }
 	    a+="\n";
 	}
