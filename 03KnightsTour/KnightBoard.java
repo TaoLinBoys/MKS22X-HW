@@ -1,40 +1,50 @@
 public class KnightBoard{
-    private int[][] board;
-	private int moveNum = 1;
+    private int[][] board;;
 
     public KnightBoard(int size){
-		board = new int[size][size];
+	board = new int[size][size];
     }
 
-    public boolean solve(){return solveH(0,0);}
+    public boolean solve(){return solveH(0,0,1);}
 	
-	private boolean solveH(int x, int y){
-		if (moveNum == board.length*board.length){return true;}
-		if (move(x,y,1,2))return solveH(x+1,y+2);
+    private boolean solveH(int x, int y, int moveNum){
+	if (moveNum == board.length*board.length){return true;}
+	if (inRange(x,y) && (board[x][y]==0)){
+	    board[x][y]=moveNum;
+	    return (solveH(x+1,y+2,moveNum+1) ||
+		    solveH(x+1,y-2,moveNum+1) ||
+		    solveH(x-1,y+2,moveNum+1) ||
+		    solveH(x-1,y-2,moveNum+1) ||
+		    solveH(x+2,y+1,moveNum+1) ||
+		    solveH(x+2,y-1,moveNum+1) ||
+		    solveH(x-2,y+1,moveNum+1) ||
+		    solveH(x-2,y-1,moveNum+1) );
 	}
-	
-	private boolean move(int x, int y, int move1, int move2){
-		if(inRange(x+move1,y+move2)){
-			moveNum++;
-			board[x+move1][y+move2] = moveNum;
-			return true;
-		}
-		return false;
-	}
+	return false;
+    }
 
-	private boolean inRange(int x, int y){
-		return x>=0 && x<board.length && y>=0 && y<board.length;
-	}
+    private boolean inRange(int x, int y){
+	return x>=0 && x<board.length && y>=0 && y<board.length;
+    }
 	
     public void printSolution(){
-		String line = "";
-		for(int i = 0; i < board.length; i++){
-			for(int j = 0; j < board.length; j++){
-				if (board[i][j]<10){line += "_"+board[i][j]+" ";}
-				line += board[i][j]+" ";
-			}
-			line += "\n"
-		}
-		System.out.println(line);
+	String line = "";
+	for(int i = 0; i < board.length; i++){
+	    for(int j = 0; j < board.length; j++){
+		if (board[i][j]==0){line+="__ ";}
+		if (board[i][j]<10 && board[i][j]>0){line += "_"+board[i][j]+" ";}
+		if (board[i][j]>=10){line += board[i][j]+" ";}	
+	    }
+	    line += "\n";
 	}
+	System.out.println(line);
+    }
+
+    public static void main(String[]args){
+	if(args.length!=0){
+	    KnightBoard board = new KnightBoard(Integer.parseInt(args[0]));
+	    board.solve();
+	    board.printSolution();
+	}
+    }
 }
