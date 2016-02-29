@@ -8,19 +8,45 @@ public class KnightBoard{
     public boolean solve(){return solveH(0,0,1);}
 	
     private boolean solveH(int x, int y, int moveNum){
+	if(!(inRange(x,y)))return false;
+	if(board[x][y]!=0)return false;
+
+	board[x][y]=moveNum;
+	if(moveNum == board.length*board.length)return true;
+
+	if(solveH(x+1, y+2, moveNum+1))return true;
+	if(solveH(x+1, y-2, moveNum+1))return true;
+	if(solveH(x-1, y+2, moveNum+1))return true;
+	if(solveH(x-1, y-2, moveNum+1))return true;
+	if(solveH(x+2, y+1, moveNum+1))return true;
+	if(solveH(x+2, y-1, moveNum+1))return true;
+	if(solveH(x-2, y+1, moveNum+1))return true;
+	if(solveH(x-2, y-1, moveNum+1))return true;
+	   
+	/*
+	if((solveH(x+1, y+2, moveNum+1) ||
+	    solveH(x+1, y-2, moveNum+1) ||
+	    solveH(x-1, y+2, moveNum+1) ||
+	    solveH(x-1, y-2, moveNum+1) ||
+	    solveH(x+2, y+1, moveNum+1) ||
+	    solveH(x+2, y-1, moveNum+1) ||
+	    solveH(x-2, y+1, moveNum+1) ||
+	    solveH(x-2, y-1, moveNum+1) )){
+	    return true;
+	    }*/
+
+	//board[x][y]=0;
+	moveNum--;
+	return false;
+
+
+	/*
 	if (moveNum == board.length*board.length){return true;}
 	if (inRange(x,y) && (board[x][y]==0)){
 	    board[x][y]=moveNum;
-	    return (solveH(x+1,y+2,moveNum+1) ||
-		    solveH(x+1,y-2,moveNum+1) ||
-		    solveH(x-1,y+2,moveNum+1) ||
-		    solveH(x-1,y-2,moveNum+1) ||
-		    solveH(x+2,y+1,moveNum+1) ||
-		    solveH(x+2,y-1,moveNum+1) ||
-		    solveH(x-2,y+1,moveNum+1) ||
-		    solveH(x-2,y-1,moveNum+1) );
+	    return 
 	}
-	return false;
+	return false;*/
     }
 
     private boolean inRange(int x, int y){
