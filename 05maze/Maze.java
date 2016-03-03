@@ -21,9 +21,18 @@ public class Maze{
     public Maze(String filename, boolean ani){
 	animate = ani;
         try{
-	    Scanner s = new Scanner(filename);
-	    Scanner line = new Scanner(s.nextLine);
-	}catch(FileNotFoundException){}
+	    File file = new File(filename);
+	    Scanner s = new Scanner(file);
+	    while(s.hasNextLine()){
+		Scanner line = new Scanner(s.nextLine());
+		
+	    }
+	    
+	    
+	    
+
+	    
+	}catch(FileNotFoundException e){}
 		
     }
 
@@ -121,5 +130,17 @@ public class Maze{
     //END FREE STUFF
 
 
+    public static void main(String[]args){
+	try{
+	    File f = new File("data1.dat");
+	    Scanner s = new Scanner(f);
+	    Scanner line = new Scanner(s.nextLine());
+	    System.out.println(line.next());
+	    
+	    char[][]test;
+	    
+	}catch(FileNotFoundException e){}
+    }
+    
 
 }
