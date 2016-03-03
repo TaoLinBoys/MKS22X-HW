@@ -28,7 +28,7 @@ public class KnightBoard{
 	    //printSolution();
 	    return true;
 	}else{
-	    board[x][y]=moveNum;	    
+	    board[x][y]=0;	    
 	}
 	//printSolution();
 	return false;
