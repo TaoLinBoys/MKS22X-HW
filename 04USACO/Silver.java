@@ -54,8 +54,6 @@ public class Silver{
 	    for(int j = 0; j < ary1[i].length; j++){
 		if(ary2[i][j]>=0){
 		    conwayH(i,j,ary1,ary2);
-		    //printPasture();
-		    //printStuff(ary2);
 		}
 	    }
 	}
@@ -91,7 +89,7 @@ public class Silver{
 	}
 	System.out.println("");
     }
-    public void printStuff(int[][]array1){
+    public void print(int[][]array1){
 	//System.out.println("THIS IS ARY2");
 	for(int i = 0; i < array1.length; i++){
 	    String line = "";
