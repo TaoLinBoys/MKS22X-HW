@@ -7,62 +7,50 @@ public class Quick{
 	data[left]=randNum;    //switching the random integer
 	data[indexR]=leftI;    //with the leftmost one
 
+	System.out.println(randNum);
 	
-	System.out.println("RANDOMLY SELECTED INTEGER: " + randNum);
+	int[]newData = new int[data.length]; //creating new list to hold
+	                                     //the partitioned elements
 
+	int leftD = 0;  //index to indicate where to place randNum
+	int rightD = data.length-1;
 	
-	int ctrL = left+1; //counter to start from left side
-	                   //+1 cuz of switching with random variable
-	int ctrR = right;  //counter from right side
-
-	//if it's the lowest num, just leave it
-	if(randNum == lowestNum(data))return left;
-
-	
-	//if not, partition
-	while(ctrL != ctrR){
-	    if(data[ctrL] <= randNum){//if its less than the random int
-		ctrL++;               //leave it
-	    }else{              //else, switch the left most and right most
-		int a = data[ctrL];
-		int b = data[ctrR];
-		
-		data[ctrL] = b;
-		data[ctrR] = a;
-		//ctrL++;
-		ctrR--;
+	for(int i = 0; i < data.length; i++){
+	    if(data[i] < randNum){
+		newData[leftD] = data[i];
+		leftD++;
+	    }
+	    if(data[i] > randNum){
+		newData[rightD] = data[i];
+		rightD--;
 	    }
 	}
 
+	newData[rightD] = randNum;
+
+	for(int i = 0; i < data.length; i++){
+	    data[i] = newData[i];
+	}
+
+	return rightD;
 	
-	//loop ended so ctrL and ctrR are equal and
-	//the randomint that was at the left most side will
-	//replace the int at ctrL if randNum > data[ctrL]
-	//if randNum < data[ctrL], then replace it with data[ctrL+1]
-	if(randNum > data[ctrL]){
-	    int leftside = data[ctrL];
-	    data[ctrL] = randNum;
-	    data[left] = leftside;
-	    return ctrL;
-	}else{
-	    int leftside = data[ctrL - 1];
-	    data[ctrL] = randNum;
-	    data[left] = leftside;
-	    return ctrL - 1;
-	}
     }
-
-    private static int lowestNum(int[]data){
-	int num = data[0];
-	for(int i = 1; i < data.length; i++){
-	    if(data[i] < num)num = data[i];
-	}
-	return num;
-    }
-
 
     
-    public static int quickselect(int[]data, int k){return 2;}
+    public static int quickselect(int[]data, int k){
+	return quickselect(data, k, 0, data.length - 1);
+    }
+
+    private static int quickselect(int[]data, int k, int left, int right){
+        int isK = partition(data, left, right);
+	if(k == isK)return data[k];
+
+	if(isK < k){
+	    return quickselect(data,k,isK+1,right);
+	}else{
+	    return quickselect(data,k,left,isK-1);
+	}
+    }
 
 
 
@@ -78,8 +66,20 @@ public class Quick{
 
     public static void main(String[]args){
 	int[]test = {2, 5 ,1, 21, 14, 9};
+
+	System.out.println("======TESTING PARTITION=======");
 	printArray(test);
 	partition(test,0,test.length-1);
 	printArray(test);
+	System.out.println("==============================");
+	System.out.println("");
+
+	System.out.println("======TESTING QUICKSELECT=======");
+
+	printArray(test);
+	System.out.println(quickselect(test, 2));
+	
+	System.out.println("================================");
+	System.out.println("");
     }
 }
