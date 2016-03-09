@@ -1,3 +1,5 @@
+import java.util.*;
+
 public class Sorts{
     public static void printArray (int[]data){
 	System.out.print("{");
@@ -13,13 +15,13 @@ public class Sorts{
     }
 
     public static int[] merge (int[]a, int[]b){
-	int[]ans=new int[first.length+second.length];
+	int[]ans=new int[a.length+b.length];
 	int indexA=0;
 	int indexB=0;
 	int i;
 	
-	for (i=0; i<ans.length && indexA<a.length && indexA<b.length; i++){
-	    if (first[firstIndex]>second[secondIndex]){
+	for(i=0; i<ans.length && indexA<a.length && indexB<b.length; i++){
+	    if (a[indexA]>b[indexB]){
 		ans[i] = b[indexB];
 		indexB++;
 	    }else{
@@ -30,22 +32,22 @@ public class Sorts{
 
 	int[]remainders;
 	int remains;
-	if (firstIndex==first.length){
-	    remainders=second;
-	    remains=secondIndex;
+	if (indexA==a.length){
+	    remainders=b;
+	    remains=indexB;
 	}else{
-	    remainders=first;
-	    remains=firstIndex;
+	    remainders=a;
+	    remains=indexA;
 	}
 	
-	for (int k=remains;k<remainders.length;k++){
-	    ans[i]=remainders[k];
+	for (int j = remains; j < remainders.length; j++){
+	    ans[i]=remainders[j];
 	    i++;
 	}
 	return ans;
     }
 
-    public static void mergeSort (int[]data){
+    public static void mergesort (int[]data){
 	int[]ans = helper(data);
 	for (int i=0;i<data.length;i++){
 	    data[i]=ans[i];
@@ -62,15 +64,18 @@ public class Sorts{
         int[]ans=merge(helper(firstHalf),helper(secondHalf));
 	return ans;
     }
-    
+
+    public static String name(){
+	return "7,Lin,Tao";
+    }
 
 
     public static void main(String[]args){
-	int[]ary={8,7,1,4};
-	int[]ary2={324,5,345,234,-1};
-	mergeSort(ary);
+	int[]ary={36, 82, 1, 10, 20102030};
+	int[]ary2={40, 5, 7, 12, 101};
+	mergesort(ary);
 	printArray(ary);
-	mergeSort(ary2);
+	mergesort(ary2);
 	printArray(ary2);
     }
 }	
