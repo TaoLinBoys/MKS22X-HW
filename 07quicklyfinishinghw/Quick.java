@@ -1,15 +1,16 @@
 import java.lang.*;
 public class Quick{
+
+    //PARTITION
     private static int partition(int[]data, int left, int right){
 	int indexR = left + (int)(Math.random()*(right - left + 1));
-	swap(data, indexR, left); //bring the random number to the front
+	swap(data, indexR, left); 
 	int randNum = data[left];
-	System.out.println("random int: " + data[left]); //print the front aka random number
 
 	int startL = left + 1;
 	int startR = right;
 
-	while(startL!=startR){
+	while(startL < startR){
 	    if(data[startL] <= randNum){
 		startL++;
 	    }else{
@@ -28,11 +29,17 @@ public class Quick{
     }
 
     
+
+    //QUICKSELECT
     public static int quickselect(int[]data, int k){
 	return quickselect(data, k, 0, data.length - 1);
     }
 
     private static int quickselect(int[]data, int k, int left, int right){
+	if(left == right){
+	    return data[left];
+	}
+	
         int isK = partition(data, left, right);
 	if(k == isK)return data[k];
 
@@ -44,7 +51,28 @@ public class Quick{
     }
 
 
+    
 
+    //QUICKSORT
+    public static void quickSort(int[]data){
+	quickSort(data,0,data.length-1);
+    }
+
+    private static void quickSort(int[]data, int left, int right){
+        if(Math.abs(right - left) > 1){
+	    int split = partition(data, left, right);
+	    quickSort(data, split + 1, right);
+	    quickSort(data, left, split - 1);
+	}
+    }
+    
+
+
+    //HELPERS, ETC
+    public static String name(){
+	return "7,Lin,Tao";
+    }
+    
     private static void swap(int[]data, int x, int y){
 	int xa = data[x];
 	data[x] = data[y];
@@ -60,21 +88,25 @@ public class Quick{
     }
 
     public static void main(String[]args){
-	int[]test = {2, 5 ,1, 21, 14, 9};
+	int[]test = {2, 5 ,1, 21, 14, 9, 1};
+	int[]test2 = {1, 0, 21, 62, 93, 2};
+	int[]test3 = {5, 12, 43, -13, 3, 4};
 
 	System.out.println("======TESTING PARTITION=======");
 	printArray(test);
 	partition(test,0,test.length-1);
 	printArray(test);
-	System.out.println("==============================");
 	System.out.println("");
 
 	System.out.println("======TESTING QUICKSELECT=======");
-
-	//printArray(test);
-	//System.out.println(quickselect(test, 2));
+	printArray(test2);
+	System.out.println(quickselect(test2, 2));
+	System.out.println("");
 	
-	System.out.println("================================");
+	System.out.println("======TESTING QUICKSORT======");	
+	printArray(test3);
+	quickSort(test3);
+	printArray(test3);
 	System.out.println("");
     }
 }
