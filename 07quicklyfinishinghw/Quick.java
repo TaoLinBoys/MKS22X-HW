@@ -59,7 +59,7 @@ public class Quick{
     }
 
     private static void quickSort(int[]data, int left, int right){
-        if(Math.abs(right - left) > 1){
+        if(left < right){
 	    int split = partition(data, left, right);
 	    quickSort(data, split + 1, right);
 	    quickSort(data, left, split - 1);
@@ -90,7 +90,7 @@ public class Quick{
     public static void main(String[]args){
 	int[]test = {2, 5 ,1, 21, 14, 9, 1};
 	int[]test2 = {1, 0, 21, 62, 93, 2};
-	int[]test3 = {5, 12, 43, -13, 3, 4};
+	int[]test3 = {5, 4, 1, 3, 2, 5, 5, 5, 5, 5, 5};
 
 	System.out.println("======TESTING PARTITION=======");
 	printArray(test);
