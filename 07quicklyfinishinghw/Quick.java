@@ -71,7 +71,7 @@ public class Quick{
 	swap(data, indexR, left); 
 	int randNum = data[left];
 
-	System.out.println(randNum);
+	//System.out.println(randNum);
 	
 	int startL = left + 1;
 	int startR = right;
@@ -92,13 +92,16 @@ public class Quick{
 		index2--;
 	    }
 	}
+	//System.out.println(data[index2+1]);
+
+	int[]indexes = {startL, index2+1};
 	
 	if(data[startL] < randNum){
 	    swap(data, startL, left);
-	    return data;
+	    return indexes;
 	}else{
 	    swap(data, startL - 1, left);
-	    return data;
+	    return indexes;
 	}
     }
 
@@ -108,9 +111,10 @@ public class Quick{
     }
 
     private static void quickSort(int[]data, int left, int right){
-        if(Math.abs(left - right) > 1){
+        if(left <= right){
 	    int[] split = partition(data, left, right);
-	    quickSort(data, split[0], split[1]);
+	    quickSort(data, left, split[0]-1);
+	    quickSort(data, split[1]+1, right);
 	}
     }
 
@@ -138,7 +142,7 @@ public class Quick{
 	int[]test = {1, 2, 2, 1, 3, 1, 3, 1, 1};
 	int[]test2 = {1, 0, 21, 62, 93, 2};
 	int[]test3 = {5, 4, 1, 3, 2, 5, 5, 5, 5, 5, 5};
-	int[]test4 = {2, 3, 4, 1, 0};
+	int[]test4 = {2, 3, 4, 1, 0, 1, 1};
 
 	System.out.println("======TESTING PARTITION=======");
 	printArray(test);
