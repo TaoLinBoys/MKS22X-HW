@@ -2,7 +2,7 @@ import java.lang.*;
 public class Quick{
 
     //PARTITION
-    private static int partitionOLD(int[]data, int left, int right){
+    private static int partitionOld(int[]data, int left, int right){
 	int indexR = left + (int)(Math.random()*(right - left + 1));
 	swap(data, indexR, left); 
 	int randNum = data[left];
@@ -40,7 +40,7 @@ public class Quick{
 	    return data[left];
 	}
 	
-        int isK = partitionOLD(data, left, right);
+        int isK = partitionOld(data, left, right);
 	if(k == isK)return data[k];
 
 	if(isK < k){
@@ -50,28 +50,27 @@ public class Quick{
 	}
     }
 
-
-    
-
     //QUICKSORT
-    public static void quickSortOLD(int[]data){
-	quickSortOLD(data,0,data.length-1);
+    public static void quickSortOld(int[]data){
+	quickSortOld(data,0,data.length-1);
     }
 
-    private static void quickSortOLD(int[]data, int left, int right){
+    private static void quickSortOld(int[]data, int left, int right){
         if(left < right){
-	    int split = partitionOLD(data, left, right);
-	    quickSortOLD(data, split + 1, right);
-	    quickSortOLD(data, left, split - 1);
+	    int split = partitionOld(data, left, right);
+	    quickSortOld(data, split + 1, right);
+	    quickSortOld(data, left, split - 1);
 	}
     }
+
+    //NEW STUFF///////////////////////////////////////////////
 
     public static int[] partition(int[]data, int left, int right){
 	int indexR = left + (int)(Math.random()*(right - left + 1));
 	swap(data, indexR, left); 
 	int randNum = data[left];
 
-	//System.out.println(randNum);
+	System.out.println(randNum);
 	
 	int startL = left + 1;
 	int startR = right;
@@ -94,7 +93,7 @@ public class Quick{
 	}
 	//System.out.println(data[index2+1]);
 
-	int[]indexes = {startL, index2+1};
+	int[]indexes = {index2, startL};
 	
 	if(data[startL] < randNum){
 	    swap(data, startL, left);
@@ -111,8 +110,9 @@ public class Quick{
     }
 
     private static void quickSort(int[]data, int left, int right){
-        if(left <= right){
+        if(left < right){
 	    int[] split = partition(data, left, right);
+	    printArray(data);
 	    quickSort(data, left, split[0]-1);
 	    quickSort(data, split[1]+1, right);
 	}
@@ -138,11 +138,20 @@ public class Quick{
 	System.out.println(ary);
     }
 
+    public static int[] create(){
+	int size = (Math.random()*10) + 1;
+	int[] data = new int[size];
+	for(int i = 0; i < size.length; i++){
+	    int rand = Math.random()*40;
+	    data[i] = 
+	}
+    }
+
     public static void main(String[]args){
 	int[]test = {1, 2, 2, 1, 3, 1, 3, 1, 1};
 	int[]test2 = {1, 0, 21, 62, 93, 2};
-	int[]test3 = {5, 4, 1, 3, 2, 5, 5, 5, 5, 5, 5};
-	int[]test4 = {2, 3, 4, 1, 0, 1, 1};
+	int[]test3 = {5,1,4,1,3,1,2,1,1};
+	int[]test4 = {2,3,2,2,2,2,56,7,4,3};
 
 	System.out.println("======TESTING PARTITION=======");
 	printArray(test);
@@ -157,7 +166,7 @@ public class Quick{
 	
 	System.out.println("======TESTING QUICKSORTOLD======");	
 	printArray(test3);
-	quickSortOLD(test3);
+	quickSortOld(test3);
 	printArray(test3);
 	System.out.println("");
 
