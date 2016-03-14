@@ -97,6 +97,7 @@ public class Quick{
 	
 	if(data[startL] < randNum){
 	    swap(data, startL, left);
+	    printArray(indexes);
 	    return indexes;
 	}else{
 	    swap(data, startL - 1, left);
