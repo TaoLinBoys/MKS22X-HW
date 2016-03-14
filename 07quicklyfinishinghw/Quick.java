@@ -70,7 +70,7 @@ public class Quick{
 	swap(data, indexR, left); 
 	int randNum = data[left];
 
-	//System.out.println(randNum);
+	System.out.println(randNum);
 	
 	int startL = left + 1;
 	int startR = right;
@@ -140,7 +140,7 @@ public class Quick{
 
     public static int[] create(){
 	int size = (int)(Math.random()*10) + 1;
-	int[] data = new int[10];
+	int[] data = new int[5];
 	for(int i = 0; i < data.length; i++){
 	    int rand = (int)(Math.random()*3);
 	    data[i] = rand;
@@ -152,7 +152,7 @@ public class Quick{
 	int[]test = create();
 	int[]test2 = create();
 	int[]test3 = create();
-	int[]test4 = create();
+	int[]test4 = {2,0,2,0,2};
 
 	System.out.println("======TESTING PARTITION=======");
 	printArray(test);
