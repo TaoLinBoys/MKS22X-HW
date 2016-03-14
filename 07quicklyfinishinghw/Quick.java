@@ -70,7 +70,7 @@ public class Quick{
 	swap(data, indexR, left); 
 	int randNum = data[left];
 
-	System.out.println(randNum);
+	//System.out.println(randNum);
 	
 	int startL = left + 1;
 	int startR = right;
@@ -112,7 +112,7 @@ public class Quick{
     private static void quickSort(int[]data, int left, int right){
         if(left < right){
 	    int[] split = partition(data, left, right);
-	    printArray(data);
+	    //printArray(data);
 	    quickSort(data, left, split[0]-1);
 	    quickSort(data, split[1]+1, right);
 	}
@@ -138,20 +138,21 @@ public class Quick{
 	System.out.println(ary);
     }
 
-    /*public static int[] create(){
-	int size = (Math.random()*10) + 1;
-	int[] data = new int[size];
-	for(int i = 0; i < size.length; i++){
-	    int rand = Math.random()*40;
-	    data[i] = 
-		}
-    }*/
+    public static int[] create(){
+	int size = (int)(Math.random()*10) + 1;
+	int[] data = new int[10];
+	for(int i = 0; i < data.length; i++){
+	    int rand = (int)(Math.random()*3);
+	    data[i] = rand;
+	}
+	return data;
+    }
 
     public static void main(String[]args){
-	int[]test = {1, 2, 2, 1, 3, 1, 3, 1, 1};
-	int[]test2 = {1, 0, 21, 62, 93, 2};
-	int[]test3 = {5,1,4,1,3,1,2,1,1};
-	int[]test4 = {2,3,2,2,2,2,56,7,4,3,23};
+	int[]test = create();
+	int[]test2 = create();
+	int[]test3 = create();
+	int[]test4 = create();
 
 	System.out.println("======TESTING PARTITION=======");
 	printArray(test);
