@@ -16,7 +16,15 @@ public class MyLinkedList{
     private int size;
     
     public boolean add(int value){
-	if(start.getNext == null)
+	if(start.getNext == null){
+	    start = new LNode(value);
+	}else{
+	    LNode current = start;
+	    while(current.getNext != null){
+		current = current.getNext();
+	    }
+	    current = new LNode(value);
+	}
     }
 
 
