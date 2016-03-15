@@ -1,0 +1,9 @@
+
+public class LNode{
+    int val;
+    LNode next;
+    
+    public LNode(int newval){
+	val = newVal;
+    }
+}
