@@ -41,6 +41,21 @@ public class MyLinkedList{
 	size+=1;
 	return true;
     }
+
+    public boolean add(int index, int value){
+	LNode newNode = new LNode(value);
+	LNode current = head;
+	int ctr = 0;
+	while(ctr < index - 1){
+	    current = current.getNext();
+	    ctr++;
+	}
+	
+	LNode nextone = current.getNext();
+	current.setNext(newNode);
+	newNode.setNext(nextone);
+	return true;
+    }
  
     public String toString(){
 	String ans = "[";
@@ -97,6 +112,8 @@ public class MyLinkedList{
 	System.out.println(test.size());
 	System.out.println(test.get(1));
 	System.out.println(test.set(5,420));
+	System.out.println(test);
+        test.add(3,420);
 	System.out.println(test);
     }
 }
