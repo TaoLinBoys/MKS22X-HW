@@ -1,52 +1,102 @@
 public class MyLinkedList{
 
-    public class LNode{
-	private int val;
-	private LNode next;
-	public LNode(int newval){
-	    val = newval;
+    private class LNode{
+	//instance variables
+	int value;
+	LNode next;
+	
+	public LNode(int v){
+	    value = v;
 	}
-	public int getval(){return val;}
-	public LNode getNext(){return next;}
-	public void setval(int newval){val = newval;}
-	public void setNext(LNode newNext){next = newNext;}	
+
+	public int getValue(){
+	    return value;
+	}
+	public LNode getNext(){
+	    return next;
+	}
+	public void setValue(int v){
+	    value = v;
+	}
+	public void setNext(LNode n){
+	    next = n;
+	}
     }
 
-    private LNode start;
-    private int size;
+    //instance Variables
+    LNode head;
+    int size;
     
+    //methods
     public boolean add(int value){
-	if(start== null){
-	    start = new LNode(value);
-	    return true;
+	if(head == null){
+	    head = new LNode(value);
 	}else{
-	    LNode current = start;
-	    while(current.getNext() != null){
-		current = current.getNext();
+	    LNode p = head;			
+	    while(p.getNext()!=null){
+		p = p.getNext();
 	    }
-	    current = new LNode(value);
-	    return true;
+	    p.setNext(new LNode(value));
 	}
+	size+=1;
+	return true;
     }
-
+ 
     public String toString(){
-	String list = "[";
-	LNode current = start;
-	while(current.getNext() != null){
-	    list += current.getval() + ", ";
+	String ans = "[";
+	LNode p = head;
+	while(p != null){
+	    ans += p.getValue();
+	    if(p.getNext()!= null){
+		ans+=", ";
+	    }
+	    p = p.getNext();
 	}
-	list += current.getval() + "]";
-	return list;
+	return ans+"]";
     }
 
+    public int size(){
+	LNode current = head;
+	int size = 0;
+	while(current != null){
+	    size++;
+	    current = current.getNext();
+	}
+	return size;
+    }
+
+    public int get(int index){
+	LNode current = head;
+	int ctr = 0;
+	while(ctr < index){
+	    current = current.getNext();
+	    ctr++;
+	}
+	return current.getValue();
+    }
+
+    public int set(int index, int newValue){
+	LNode current = head;
+	int ctr = 0;
+	while(ctr < index){
+	    current = current.getNext();
+	    ctr++;
+	}
+	int old = current.getValue();
+	current.setValue(newValue);
+	return old;
+    }
+   
     public static void main(String[]args){
 	MyLinkedList test = new MyLinkedList();
-	for(int i = 0; i < 5; i++){
-	    int rand = (int)(Math.random()*50);
+	for(int i = 0; i < 10; i++){
+	    int rand = (int)(Math.random()*100) - 20;
 	    test.add(rand);
-	    System.out.println(test.toString());
 	}
+	System.out.println(test);
+	System.out.println(test.size());
+	System.out.println(test.get(1));
+	System.out.println(test.set(5,420));
+	System.out.println(test);
     }
-
-
 }
