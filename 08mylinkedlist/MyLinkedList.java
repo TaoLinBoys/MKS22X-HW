@@ -88,11 +88,12 @@ public class MyLinkedList{
 
     public int size(){
 	LNode current = head;
-	int size = 0;
+	int findSize = 0;
 	while(current != null){
-	    size++;
+	    findSize++;
 	    current = current.getNext();
 	}
+	size = findSize;
 	return size;
     }
 
@@ -117,7 +118,21 @@ public class MyLinkedList{
 	current.setValue(newValue);
 	return old;
     }
-   
+
+    public int indexOf(int value){
+	LNode current = head;
+	int ctr = 0;
+	while(ctr < size){
+	    if(current.getValue() == value){
+		return ctr;
+	    }else{
+		ctr++;
+		current = current.getNext();
+	    }
+	}
+	return -1;
+    }
+    
     public static void main(String[]args){
 	MyLinkedList test = new MyLinkedList();
 	for(int i = 0; i < 10; i++){
@@ -133,5 +148,6 @@ public class MyLinkedList{
 	System.out.println(test);
 	System.out.println(test.remove(3));
 	System.out.println(test);
+	System.out.println(test.indexOf(420));
     }
 }
