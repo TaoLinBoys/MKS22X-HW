@@ -56,6 +56,22 @@ public class MyLinkedList{
 	newNode.setNext(nextone);
 	return true;
     }
+
+    public int remove(int index){
+	LNode current = head;
+	int ctr = 0;
+	while(ctr < index - 1){
+	    current = current.getNext();
+	    ctr++;
+	}
+	
+	LNode skip = current.getNext();
+	int oldInt = skip.getValue();
+	skip = skip.getNext();
+	current.setNext(skip);
+	return oldInt;
+	
+    }
  
     public String toString(){
 	String ans = "[";
@@ -114,6 +130,8 @@ public class MyLinkedList{
 	System.out.println(test.set(5,420));
 	System.out.println(test);
         test.add(3,420);
+	System.out.println(test);
+	System.out.println(test.remove(3));
 	System.out.println(test);
     }
 }
