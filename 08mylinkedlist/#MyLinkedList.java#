@@ -25,6 +25,7 @@ public class MyLinkedList{
 
     //instance Variables
     LNode head;
+
     int size;
     
     //methods
