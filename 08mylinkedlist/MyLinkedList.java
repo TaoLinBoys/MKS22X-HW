@@ -25,18 +25,17 @@ public class MyLinkedList{
 
     //instance Variables
     LNode head;
+    LNode end;
     int size;
     
     //methods
     public boolean add(int value){
 	if(head == null){
 	    head = new LNode(value);
+	    end = head;
 	}else{
-	    LNode p = head;			
-	    while(p.getNext()!=null){
-		p = p.getNext();
-	    }
-	    p.setNext(new LNode(value));
+	    end.setNext(new LNode(value));
+	    end = end.getNext();
 	}
 	size++;
 	return true;
@@ -72,23 +71,6 @@ public class MyLinkedList{
 	current.setNext(skip);
 	return oldInt;
 	
-    }
- 
-    public String toString(){
-	String ans = "[";
-	LNode p = head;
-	while(p != null){
-	    ans += p.getValue();
-	    if(p.getNext()!= null){
-		ans+=", ";
-	    }
-	    p = p.getNext();
-	}
-	return ans+"]";
-    }
-
-    public int size(){
-	return size;
     }
 
     public int get(int index){
@@ -126,22 +108,21 @@ public class MyLinkedList{
 	}
 	return -1;
     }
-    
-    public static void main(String[]args){
-	MyLinkedList test = new MyLinkedList();
-	for(int i = 0; i < 10; i++){
-	    int rand = (int)(Math.random()*100) - 20;
-	    test.add(rand);
+
+    public int size(){
+	return size;
+    }
+
+    public String toString(){
+	String ans = "[";
+	LNode p = head;
+	while(p != null){
+	    ans += p.getValue();
+	    if(p.getNext()!= null){
+		ans+=", ";
+	    }
+	    p = p.getNext();
 	}
-	System.out.println(test);
-	System.out.println(test.size());
-	System.out.println(test.get(1));
-	System.out.println(test.set(5,420));
-	System.out.println(test);
-        test.add(3,420);
-	System.out.println(test);
-	System.out.println(test.remove(3));
-	System.out.println(test);
-	System.out.println(test.indexOf(420));
+	return ans+"]";
     }
 }
