@@ -1,4 +1,5 @@
 import java.util.*;
+import java.lang.*;
 
 public class MyLinkedList<T>{
 
@@ -44,17 +45,32 @@ public class MyLinkedList<T>{
     }
 
     public boolean add(int index, T value){
-	LNode newNode = new LNode(value);
-	LNode current = head;
-	int ctr = 0;
-	while(ctr < index - 1){
-	    current = current.getNext();
-	    ctr++;
+	if(index < 0 || index > size){
+	    throw new IndexOutOfBoundsException();
 	}
-	
-	LNode nextone = current.getNext();
-	current.setNext(newNode);
-	newNode.setNext(nextone);
+
+	if(index == 0){
+	    LNode newhead = new LNode(value);
+	    newhead.setNext(head);
+	    head = newhead;
+	}
+
+	if(index == size){
+	    end.setNext(new LNode(value));
+	    end = end.getNext();
+	}else{
+	    LNode newNode = new LNode(value);
+	    LNode current = head;
+	    int ctr = 0;
+	    while(ctr < index - 1){
+		current = current.getNext();
+		ctr++;
+	    }
+	    LNode nextone = current.getNext();
+	    current.setNext(newNode);
+	    newNode.setNext(nextone);
+	}
+
 	size++;
 	return true;
     }
