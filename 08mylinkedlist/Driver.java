@@ -1,6 +1,6 @@
 public class Driver{
     public static void main(String[]args){
-	MyLinkedList test = new MyLinkedList();
+	MyLinkedList<Integer> test = new MyLinkedList<Integer>();
 	for(int i = 0; i < 10; i++){
 	    int rand = (int)(Math.random()*100) - 20;
 	    test.add(rand);

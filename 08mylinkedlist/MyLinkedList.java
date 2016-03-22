@@ -1,21 +1,23 @@
-public class MyLinkedList{
+import java.util.*;
+
+public class MyLinkedList<T>{
 
     private class LNode{
 	//instance variables
-	int value;
-	LNode next;
+	private T value;
+	private LNode next;
 	
-	public LNode(int v){
+	public LNode(T v){
 	    value = v;
 	}
 
-	public int getValue(){
+	public T getValue(){
 	    return value;
 	}
 	public LNode getNext(){
 	    return next;
 	}
-	public void setValue(int v){
+	public void setValue(T v){
 	    value = v;
 	}
 	public void setNext(LNode n){
@@ -29,7 +31,7 @@ public class MyLinkedList{
     int size;
     
     //methods
-    public boolean add(int value){
+    public boolean add(T value){
 	if(head == null){
 	    head = new LNode(value);
 	    end = head;
@@ -41,7 +43,7 @@ public class MyLinkedList{
 	return true;
     }
 
-    public boolean add(int index, int value){
+    public boolean add(int index, T value){
 	LNode newNode = new LNode(value);
 	LNode current = head;
 	int ctr = 0;
@@ -57,7 +59,7 @@ public class MyLinkedList{
 	return true;
     }
 
-    public int remove(int index){
+    public T remove(int index){
 	LNode current = head;
 	int ctr = 0;
 	while(ctr < index - 1){
@@ -66,14 +68,14 @@ public class MyLinkedList{
 	}
 	
 	LNode skip = current.getNext();
-	int oldInt = skip.getValue();
+	T oldInt = skip.getValue();
 	skip = skip.getNext();
 	current.setNext(skip);
 	return oldInt;
 	
     }
 
-    public int get(int index){
+    public T get(int index){
 	LNode current = head;
 	int ctr = 0;
 	while(ctr < index){
@@ -83,19 +85,19 @@ public class MyLinkedList{
 	return current.getValue();
     }
 
-    public int set(int index, int newValue){
+    public T set(int index, T newValue){
 	LNode current = head;
 	int ctr = 0;
 	while(ctr < index){
 	    current = current.getNext();
 	    ctr++;
 	}
-	int old = current.getValue();
+	T old = current.getValue();
 	current.setValue(newValue);
 	return old;
     }
 
-    public int indexOf(int value){
+    public int indexOf(T value){
 	LNode current = head;
 	int ctr = 0;
 	while(ctr < size){
