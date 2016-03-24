@@ -58,10 +58,7 @@ public class MyLinkedList<T>{
 	}
 
 	if(index == size){
-	    end.setNext(new LNode(value));
-	    end = end.getNext();
-	    size++;
-	    return true;
+	    return add(value);
 	}else{
 	    LNode newNode = new LNode(value);
 	    LNode current = head;
