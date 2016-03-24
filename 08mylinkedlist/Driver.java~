@@ -1,15 +1,6 @@
 import java.util.*;
 public class Driver{
     public static void main(String[]args){
-	/*
-	MyLinkedList<Integer> m = new MyLinkedList<Integer>();
-	m.add(1);
-	m.add(2);
-	m.add(3);
-	System.out.println(m);
-	m.add(m.size(),4);
-	System.out.println(m);
-	*/
         MyLinkedList<String> m = new MyLinkedList<String>();
         ArrayList<String>    n = new ArrayList<String>();
 
