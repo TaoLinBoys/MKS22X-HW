@@ -1,8 +1,9 @@
 import java.util.*;
 import java.lang.*;
 
-public class MyLinkedList<T>{
+public class MyLinkedList<T> implements Iterable<T>{
 
+    //LNode innerclass
     private class LNode{
 	//instance variables
 	private T value;
@@ -26,7 +27,7 @@ public class MyLinkedList<T>{
 	}
     }
 
-    //instance Variables
+    //instance variables
     LNode head;
     LNode end;
     int size;
@@ -173,6 +174,7 @@ public class MyLinkedList<T>{
 	return ans+"]";
     }
 
+    //debugging toString
     public String toString(boolean anything){
 	String ans = "[";
 	LNode p = head;
@@ -185,4 +187,7 @@ public class MyLinkedList<T>{
 	}
 	return ans+"]" + " head: "+head.getValue() + " tail: "+end.getValue();
     }
+
+    //iterator innerclass
+    public class LLiterator{}
 }
