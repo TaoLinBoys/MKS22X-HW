@@ -1,8 +1,9 @@
 import java.util.*;
 import java.lang.*;
 
-public class MyLinkedList<T>{
+public class MyLinkedList<T> implements Iterable<T>{
 
+    //LNode innerclass
     private class LNode{
 	//instance variables
 	private T value;
@@ -26,7 +27,7 @@ public class MyLinkedList<T>{
 	}
     }
 
-    //instance Variables
+    //instance variables
     LNode head;
     LNode end;
     int size;
@@ -53,11 +54,12 @@ public class MyLinkedList<T>{
 	    LNode newhead = new LNode(value);
 	    newhead.setNext(head);
 	    head = newhead;
+	    size++;
+	    return true;
 	}
 
 	if(index == size){
-	    end.setNext(new LNode(value));
-	    end = end.getNext();
+	    return add(value);
 	}else{
 	    LNode newNode = new LNode(value);
 	    LNode current = head;
@@ -69,29 +71,54 @@ public class MyLinkedList<T>{
 	    LNode nextone = current.getNext();
 	    current.setNext(newNode);
 	    newNode.setNext(nextone);
+	    size++;
+	    return true;
 	}
-
-	size++;
-	return true;
     }
 
     public T remove(int index){
+	if (index < 0 || index >= size){
+	    throw new IndexOutOfBoundsException();
+	}
+	if (index == 0){
+	    T oldInt = head.getValue();
+	    head = head.getNext();
+	    size--;
+	    return oldInt;
+	}
+	if (index == size-1){
+	    LNode current = head;
+	    for(int ctr = 0; ctr < index - 1; ctr++){
+		current = current.getNext();
+	    }
+	    T oldInt = current.getNext().getValue();
+	    current.setNext(null);
+	    end = current;
+	    size--;
+	    return oldInt;
+	    
+	}
 	LNode current = head;
 	int ctr = 0;
 	while(ctr < index - 1){
 	    current = current.getNext();
 	    ctr++;
 	}
+
 	
 	LNode skip = current.getNext();
 	T oldInt = skip.getValue();
 	skip = skip.getNext();
 	current.setNext(skip);
+	size--;
 	return oldInt;
 	
     }
 
     public T get(int index){
+	if (index < 0 || index >= size){
+	    throw new IndexOutOfBoundsException();
+	}
 	LNode current = head;
 	int ctr = 0;
 	while(ctr < index){
@@ -102,6 +129,9 @@ public class MyLinkedList<T>{
     }
 
     public T set(int index, T newValue){
+	if (index < 0 || index >= size){
+	    throw new IndexOutOfBoundsException();
+	}
 	LNode current = head;
 	int ctr = 0;
 	while(ctr < index){
@@ -143,4 +173,21 @@ public class MyLinkedList<T>{
 	}
 	return ans+"]";
     }
+
+    //debugging toString
+    public String toString(boolean anything){
+	String ans = "[";
+	LNode p = head;
+	while(p != null){
+	    ans += p.getValue();
+	    if(p.getNext()!= null){
+		ans+=", ";
+	    }
+	    p = p.getNext();
+	}
+	return ans+"]" + " head: "+head.getValue() + " tail: "+end.getValue();
+    }
+
+    //iterator innerclass
+    public class LLiterator{}
 }

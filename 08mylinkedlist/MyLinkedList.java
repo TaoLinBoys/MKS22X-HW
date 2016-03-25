@@ -3,6 +3,29 @@ import java.lang.*;
 
 public class MyLinkedList<T> implements Iterable<T>{
 
+    //Iterator Iterable stuff
+    public Iterator<T> iterator(){
+	return new MLLIterator<T>();
+    }
+
+    private class MLLIterator<T> implements Iterator<T>{
+	private LNode temp;
+	public MLLIterator<T>(){
+	    temp = head;
+	}
+	public boolean hasNext(){
+	    return temp!=null;
+	}
+	public T next(){
+	    T oldValue = temp.getValue();
+	    temp = temp.getNext();
+	    return oldValue;
+	}
+	public void remove(){
+	    throw new UnsupportedOperationException();
+	}
+    }
+    
     //LNode innerclass
     private class LNode{
 	//instance variables
