@@ -5,12 +5,12 @@ public class MyLinkedList<T> implements Iterable<T>{
 
     //Iterator Iterable stuff
     public Iterator<T> iterator(){
-	return new MLLIterator<T>();
+	return new MLLIterator();  
     }
 
-    private class MLLIterator<T> implements Iterator<T>{
+    private class MLLIterator implements Iterator<T>{
 	private LNode temp;
-	public MLLIterator<T>(){
+	public MLLIterator(){
 	    temp = head;
 	}
 	public boolean hasNext(){
@@ -210,7 +210,4 @@ public class MyLinkedList<T> implements Iterable<T>{
 	}
 	return ans+"]" + " head: "+head.getValue() + " tail: "+end.getValue();
     }
-
-    //iterator innerclass
-    public class LLiterator{}
 }
