@@ -32,4 +32,14 @@ public class MyStack<T>{
 	return size() == 0;
     }
     
+    public static void main(String[]args){
+	MyStack<Integer> test = new MyStack<Integer>();
+	for(int i = 0; i < 10; i++){
+	    test.push((int)(Math.random()*1));
+	}
+	System.out.println(test.pop());
+	System.out.println(test.pop());
+	System.out.println(test.pop());
+	System.out.println(test.pop());
+    }
 }
