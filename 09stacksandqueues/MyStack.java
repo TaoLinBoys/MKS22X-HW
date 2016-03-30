@@ -7,7 +7,7 @@ public class MyStack<T>{
     }
 
     public void push(T item){
-	data.add(item);
+	data.add(0,item);
     }
 
     public T pop(){
