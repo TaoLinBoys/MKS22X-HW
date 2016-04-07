@@ -47,6 +47,21 @@ public class MyDeque<T>{
 	data[start] = value;
 	size++;
     }
+
+    public void addLast(T value){
+	if(size == data.length){
+	    grow();
+	}else if(size == 0){
+	    data[end] = value;
+	    size++;
+	}else if(end == data.length-1){
+	    end = 0;
+	}else{
+	    end++;
+	}
+	data[end] = value;
+	size++;
+    }
     
     public String toString(){
 	String dataS = "[ ";
@@ -61,20 +76,33 @@ public class MyDeque<T>{
     }
 
     public static void main(String[]args){
-	MyDeque<Integer> test = new MyDeque<Integer>();
+	MyDeque<Integer> test1 = new MyDeque<Integer>();
 
 	//adding to deque a bunch of times to test add and grow
-	test.addFirst(3);
-	System.out.println(test);
-	test.addFirst(5);
-	System.out.println(test);
-	test.addFirst(4);
-	System.out.println(test);
-	test.addFirst(9);
-	System.out.println(test);
-	test.addFirst(30);
-	System.out.println(test);
-	test.addFirst(7);
-	System.out.println(test);
+	test1.addFirst(3);
+	System.out.println(test1);
+	test1.addFirst(5);
+	System.out.println(test1);
+	test1.addFirst(4);
+	System.out.println(test1);
+	test1.addFirst(9);
+	System.out.println(test1);
+	test1.addFirst(30);
+	System.out.println(test1);
+	test1.addFirst(7);
+	System.out.println(test1);
+
+	System.out.println("=======================================");
+	MyDeque<Integer> test2 = new MyDeque<Integer>();
+	test2.addLast(5);
+	System.out.println(test2);
+	test2.addLast(21);
+	System.out.println(test2);
+	test2.addLast(6);
+	System.out.println(test2);
+	test2.addLast(8);
+	System.out.println(test2);
+	test2.addLast(13);
+	System.out.println(test2);
     }
 }
