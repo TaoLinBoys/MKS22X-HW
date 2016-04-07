@@ -6,7 +6,7 @@ public class MyDeque<T>{
     @SuppressWarnings("unchecked") public MyDeque(){
 	data = (T[]) new Object[5];
 	start = 2;
-	end = 1;
+	end = 2;
 	size = 0;
     }
 
@@ -31,13 +31,19 @@ public class MyDeque<T>{
 	start = 2;
 	end = 1 + size;
 	data = newDeque;
+	
+	//System.out.println();
 	//System.out.println(toString());
+	//System.out.println();
     }
     
     public void addFirst(T value){
 	//System.out.println(size);
 	if(size == data.length){
 	    grow();
+	}
+	if(size == 0){
+	    start++;
 	}
 	if(start == 0){
 	    start = data.length - 1;
@@ -51,10 +57,11 @@ public class MyDeque<T>{
     public void addLast(T value){
 	if(size == data.length){
 	    grow();
-	}else if(size == 0){
-	    data[end] = value;
-	    size++;
-	}else if(end == data.length-1){
+	}
+	if(size == 0){
+	    end--;
+	}
+	if(end == data.length-1){
 	    end = 0;
 	}else{
 	    end++;
@@ -81,7 +88,28 @@ public class MyDeque<T>{
 	if(size == 0){
 	    throw new NoSuchElementException();
 	}
+	T removedVal = data[end];
+	data[end] = null;
+	if(end == 0){
+	    end = data.length-1;
+	}else{
+	    end--;
+	}
+	return removedVal;
+    }
+
+    public T getFirst(){
+        if(size == 0){
+	    throw new NoSuchElementException();
+	}
 	return data[start];
+    }
+
+    public T getLast(){
+        if(size == 0){
+	    throw new NoSuchElementException();
+	}
+	return data[end];
     }
     
     public String toString(){
@@ -93,31 +121,47 @@ public class MyDeque<T>{
 		dataS += data[i] + " ";
 	    }
 	}
-	return dataS+"]"+" start: "+data[start]+" end: "+data[end];
+	return dataS+"]"+" start: "+getFirst()+" end: "+getLast();
     }
 
     public static void main(String[]args){
 	MyDeque<Integer> test1 = new MyDeque<Integer>();
-
-	//adding to deque a bunch of times to test add and grow
-        for(int i = 0; i < 20; i++){
+        /*for(int i = 0; i < 20; i++){
 	    test1.addFirst(i);
 	    System.out.println(test1);
-	}
+	    }
+	*/
 
 	System.out.println("=======================================");
-	/*MyDeque<Integer> test2 = new MyDeque<Integer>();
-        for(int i = 0; i < 15; i++){
+	MyDeque<Integer> test2 = new MyDeque<Integer>();
+        /*for(int i = 0; i < 15; i++){
 	    test2.addLast(i);
 	    System.out.println(test2);
-	}
+	    }
+	*/
 	
 	System.out.println("=======================================");
-	/*MyDeque<Integer> test3 = new MyDeque<Integer>();
-	for(int i = 0; i < 15; i++){
+	MyDeque<Integer> test3 = new MyDeque<Integer>();
+	/*for(int i = 0; i < 15; i++){
 	    test3.addFirst(i);
+	}
+	System.out.println(test3);
+	for(int j = 0; j < 15; j++){
+	    System.out.println(test3.removeFirst());
 	    System.out.println(test3);
-	    }*/
+	}
+        */
+
+	System.out.println("=======================================");
+	MyDeque<Integer> test4 = new MyDeque<Integer>();
+	for(int i = 0; i < 15; i++){
+	    test4.addFirst(i);
+	}
+	System.out.println(test4);
+	for(int j = 0; j < 15; j++){
+	    System.out.println(test4.removeLast());
+	    System.out.println(test4);
+	}
 	
     }
 }
