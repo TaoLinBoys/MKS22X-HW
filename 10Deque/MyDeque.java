@@ -1,16 +1,32 @@
 public class MyDeque<T>{
-    private Object[] data;
+    private T[] data;
     private int size, start, end;
     
-    public MyDeque(){
-	data = new Object[4];
-	size = 4;
-	start = 1;
-	end = 1;
+    @SuppressWarnings("unchecked") public MyDeque(){
+	data = (T[]) new Object[4];
+	start = 2;
+	end = 2;
+	size = 0;
     }
 
-    private void grow(){
-	
+    @SuppressWarnings("unchecked") private void grow(){
+	T[] newDeque = (T[]) new Object[data.length*2];
+	int newStart = 2;
+	if(start < end){
+	    for(int i = start; i <= end; i++){
+		newDeque[newStart] = data[i];
+		newStart++;
+	    }
+	}else{
+	    for(int i = start; i < data.length; i++){
+		newDeque[newStart] = data[i];
+		newStart++;
+	    }
+	    for(int j = 0; j <= end; j++){
+		newDeque[newStart] = data[j];
+		newStart++;
+	    }
+	}
     }
     
     public void addFirst(T value){
@@ -18,7 +34,7 @@ public class MyDeque<T>{
 	//    grow();
 	//	}
 	if(start < 0){
-	    start = data.length()-1;
+	    start = data.length-1;
 	    data[start] = value;
 	}
 	if(size == 0){
