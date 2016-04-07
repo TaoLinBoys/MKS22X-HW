@@ -9,6 +9,10 @@ public class MyDeque<T>{
 	end = 1;
     }
 
+    private void grow(){
+	
+    }
+    
     public void addFirst(T value){
 	//if(size == data.length()){
 	//    grow();
