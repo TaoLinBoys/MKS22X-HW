@@ -27,6 +27,9 @@ public class MyDeque<T>{
 		newStart++;
 	    }
 	}
+	start = 2;
+	end = 1 + size;
+	data = newDeque;
     }
     
     public void addFirst(T value){
