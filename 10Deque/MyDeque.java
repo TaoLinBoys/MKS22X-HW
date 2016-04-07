@@ -36,21 +36,16 @@ public class MyDeque<T>{
 	//System.out.println(start);
 	if(size == data.length){
 	    grow();
-	    start--;
-	    data[start] = value;
-	    size++;
 	}else if(size == 0){
 	    data[start] = value;
 	    size++;
 	}else if(start == 0){
-	    start = data.length-1;
-	    data[start] = value;
-	    size++;
+	    start = data.length - 1;
 	}else{
 	    start--;
-	    data[start] = value;
-	    size++;
 	}
+	data[start] = value;
+	size++;
     }
     
     public String toString(){
