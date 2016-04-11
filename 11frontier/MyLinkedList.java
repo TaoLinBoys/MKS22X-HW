@@ -31,6 +31,7 @@ public class MyLinkedList<T> implements Iterable<T>{
 	//instance variables
 	private T value;
 	private LNode next;
+	private LNode prev;
 	
 	public LNode(T v){
 	    value = v;

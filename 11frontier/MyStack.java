@@ -7,7 +7,7 @@ public class MyStack<T>{
     }
 
     public void push(T item){
-	data.add(item);
+	data.add(0,item);
     }
 
     public T pop(){
@@ -32,4 +32,18 @@ public class MyStack<T>{
 	return size() == 0;
     }
     
+    public static void main(String[]args){
+	MyStack<Integer> test = new MyStack<Integer>();
+	Stack<Integer> therealthing = new Stack<Integer>();
+	for(int i = 0; i < 10; i++){
+	    int rand = (int)(Math.random()*1);
+	    test.push(rand);
+	}
+	System.out.println(test.pop());
+	System.out.println(test.pop());
+	System.out.println(test.pop());
+	System.out.println(test.pop());
+
+	
+    }
 }
