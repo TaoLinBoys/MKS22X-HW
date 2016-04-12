@@ -4,7 +4,17 @@ import java.io.*;
 public class BetterMaze{
     private class Node{
 	public int location;
-	//public 
+        public Node prev;
+	public Node(int L, Node P){
+	    location = L;
+	    prev = P;
+	}
+	public T getValue(){
+	    return location;
+	}
+	public Node getPrev(){
+	    return prev;
+	}
     }
 
     private char[][] maze;
