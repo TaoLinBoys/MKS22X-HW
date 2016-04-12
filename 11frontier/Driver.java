@@ -3,13 +3,17 @@ public class Driver{
 	if(args.length > 0){
 	    BetterMaze test = new BetterMaze(args[0]);
 	    System.out.println(test);
-	}else{
-	    System.out.println("gimme name of .dat file");
-	}
+	    test.solveBFS();
+	    System.out.println(test);
 
-	int a = 1;
-	String b = "" + a;
-	System.out.println(a);
-	System.out.println(b);
+	    BetterMaze test2 = new BetterMaze(args[0]);
+	    System.out.println(test2);
+	    test.solveDFS();
+	    System.out.println(test2);
+
+	    
+	}else{
+	    System.out.println("gimme name of dat file");
+	}
     }    
 }

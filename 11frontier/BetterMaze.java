@@ -3,7 +3,7 @@ import java.io.*;
 
 public class BetterMaze{
     private class Node{
-	public int[] coord;
+	public int[] coord = new int[2];
         public Node prev;
 	public Node(int x, int y, Node P){
 	    coord[0]=x;
@@ -56,8 +56,9 @@ public class BetterMaze{
    /**Search for the end of the maze using the frontier. 
       Keep going until you find a solution or run out of elements on the frontier.
     **/
-    private boolean solve(){  
-        placesToGo.add(new Node(startRow,startCol,null)); //adding start pos to frontier
+    private boolean solve(){
+	Node startNode = new Node(startRow, startCol, null);
+	placesToGo.add(startNode); //adding start pos to frontier
 	while(placesToGo.hasNext()){	    
 	    Node current = placesToGo.next();
 	    
@@ -70,6 +71,7 @@ public class BetterMaze{
 	    
 	    for(Node neigh : getNeighbors(current)){
 		placesToGo.add(neigh);
+		maze[x][y] = '.';
 	    }
 	}
 	return false;
@@ -80,16 +82,16 @@ public class BetterMaze{
 	int col = current.getValue()[1];
         ArrayList<Node> neighbors = new ArrayList<Node>();
 
-	if((maze[row+1][col] != '#') && (row+1 < maze.length)){
+	if((maze[row+1][col] != '#') && (row+1 < maze.length) && (maze[row+1][col] != '.')){
 	    neighbors.add(new Node(row+1,col,current));
 	}
-	if((maze[row-1][col] != '#') && (row-1 > 0)){
+	if((maze[row-1][col] != '#') && (row-1 > 0) && (maze[row-1][col] != '.')){
 	    neighbors.add(new Node(row-1,col,current));
 	}
-	if((maze[row][col+1] != '#') && (col+1 < maze[0].length)){
+	if((maze[row][col+1] != '#') && (col+1 < maze[0].length) && (maze[row][col+1] != '.')){
 	    neighbors.add(new Node(row,col+1,current));
 	}
-	if((maze[row][col-1] != '#') && (col-1 > 0)){
+	if((maze[row][col-1] != '#') && (col-1 > 0) && (maze[row][col-1] != '.')){
 	    neighbors.add(new Node(row,col-1,current));
 	}
 	return neighbors;
