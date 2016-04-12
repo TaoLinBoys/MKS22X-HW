@@ -1,5 +1,8 @@
 public class FrontierStack<T> implements Frontier<T>{
     private MyStack<T> data;
+    public FrontierStack(){
+	data = new MyStack<T>();
+    }
     public void add(T element){
 	data.push(element);
     }
