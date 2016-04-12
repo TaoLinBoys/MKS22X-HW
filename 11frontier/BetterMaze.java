@@ -3,14 +3,15 @@ import java.io.*;
 
 public class BetterMaze{
     private class Node{
-	public int location;
+	public int[] coord;
         public Node prev;
-	public Node(int L, Node P){
-	    location = L;
+	public Node(int x, int y, Node P){
+	    coord[0]=x;
+	    coord[1]=y;
 	    prev = P;
 	}
-	public int getValue(){
-	    return location;
+	public int[] getValue(){
+	    return coord;
 	}
 	public Node getPrev(){
 	    return prev;
@@ -56,15 +57,43 @@ public class BetterMaze{
       Keep going until you find a solution or run out of elements on the frontier.
     **/
     private boolean solve(){  
-        //filling the maze with integer values as locations
-	int ctr = 1;
-	for(char[] i : maze){
-	    for(char k : i){
-		if(
+        placesToGo.add(new Node(startRow,startCol,null)); //adding start pos to frontier
+	while(placesToGo.hasNext()){	    
+	    Node current = placesToGo.next();
+	    
+	    int[] xandy = current.getValue();
+	    int x = xandy[0];
+	    int y = xandy[1];
+	    if(maze[x][y] == 'E'){
+		return true;
+	    }
+	    
+	    for(Node neigh : getNeighbors(current)){
+		placesToGo.add(neigh);
 	    }
 	}
 	return false;
-    }    
+    }
+    
+    private ArrayList<Node> getNeighbors(Node current){
+	int row = current.getValue()[0];
+	int col = current.getValue()[1];
+        ArrayList<Node> neighbors = new ArrayList<Node>();
+
+	if((maze[row+1][col] != '#') && (row+1 < maze.length)){
+	    neighbors.add(new Node(row+1,col,current));
+	}
+	if((maze[row-1][col] != '#') && (row-1 > 0)){
+	    neighbors.add(new Node(row-1,col,current));
+	}
+	if((maze[row][col+1] != '#') && (col+1 < maze[0].length)){
+	    neighbors.add(new Node(row,col+1,current));
+	}
+	if((maze[row][col-1] != '#') && (col-1 > 0)){
+	    neighbors.add(new Node(row,col-1,current));
+	}
+	return neighbors;
+    }
      
    /**mutator for the animate variable  **/
     public void setAnimate(boolean b){ animate = b; }    
