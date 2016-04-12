@@ -24,6 +24,6 @@ public class MyQueue<T>{
     }
 
     private boolean isEmpty(){
-	return data.size() == 0;
+	return size() == 0;
     }
 }

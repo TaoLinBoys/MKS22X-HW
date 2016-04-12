@@ -1,15 +1,14 @@
-public class FrontierStack<T> implements Frontier<T>{
-    private MyStack<T> data;
+public class FrontierQueue<T> implements Frontier<T>{
+    private MyQueue<T> data;
     public void add(T element){
-	data.push(element);
+	data.enqueue(element);
     }
 
     public T next(){
-	data.pop();
+	return data.dequeue();
     }
 
     public boolean hasNext(){
-	data.peek() != null;
+	return data.peek() != null;
     }
-
 }

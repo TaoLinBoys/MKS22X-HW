@@ -30,16 +30,16 @@ public class BetterMaze{
     /**initialize the frontier as a queue and call solve
     **/
     public boolean solveBFS(){  
-        /** IMPLEMENT THIS **/      
-	return false;
+        placesToGo = new FrontierQueue<Node>();      
+	return solve();
     }   
 
 
    /**initialize the frontier as a stack and call solve
     */ 
     public boolean solveDFS(){  
-        /** IMPLEMENT THIS **/  
-	return false;
+        placesToGo = new FrontierStack<Node>();  
+	return solve();
     }    
 
    /**Search for the end of the maze using the frontier. 
@@ -51,7 +51,7 @@ public class BetterMaze{
     }    
      
    /**mutator for the animate variable  **/
-    public void setAnimate(boolean b){  /** IMPLEMENT THIS **/ }    
+    public void setAnimate(boolean b){ animate = b; }    
 
 
     public BetterMaze(String filename){
