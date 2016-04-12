@@ -60,7 +60,7 @@ public class BetterMaze{
 	int ctr = 1;
 	for(char[] i : maze){
 	    for(char k : i){
-		
+		if(
 	    }
 	}
 	return false;
