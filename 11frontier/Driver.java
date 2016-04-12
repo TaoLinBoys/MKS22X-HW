@@ -3,13 +3,17 @@ public class Driver{
 	if(args.length > 0){
 	    BetterMaze test = new BetterMaze(args[0]);
 	    System.out.println(test);
+	    test.setAnimate(true);
 	    test.solveBFS();
 	    System.out.println(test);
 
+	    
+	    /*
 	    BetterMaze test2 = new BetterMaze(args[0]);
 	    System.out.println(test2);
 	    test.solveDFS();
 	    System.out.println(test2);
+	    */
 
 	    
 	}else{

@@ -3,9 +3,10 @@ import java.io.*;
 
 public class BetterMaze{
     private class Node{
-	public int[] coord = new int[2];
+	public int[] coord;
         public Node prev;
 	public Node(int x, int y, Node P){
+	    coord = new int[2];
 	    coord[0]=x;
 	    coord[1]=y;
 	    prev = P;

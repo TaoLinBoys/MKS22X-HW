@@ -23,7 +23,11 @@ public class MyQueue<T>{
 	return data.get(0);
     }
 
+    public int size(){
+	return data.size();
+    }
+
     private boolean isEmpty(){
-	return data.size() == 0;
+	return size() == 0;
     }
 }
