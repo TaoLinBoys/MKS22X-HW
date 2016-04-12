@@ -32,8 +32,8 @@ public class BetterMaze{
      *Postcondition:  the correct solution is in the returned array
     **/
     public int[] solutionCoordinates(){
-        /** IMPLEMENT THIS **/      
-	return new int[1];
+              
+	return solution;
     }    
 
 
@@ -56,7 +56,13 @@ public class BetterMaze{
       Keep going until you find a solution or run out of elements on the frontier.
     **/
     private boolean solve(){  
-        /** IMPLEMENT THIS **/  
+        //filling the maze with integer values as locations
+	int ctr = 1;
+	for(char[] i : maze){
+	    for(char k : i){
+		
+	    }
+	}
 	return false;
     }    
      

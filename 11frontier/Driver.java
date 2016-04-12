@@ -6,5 +6,10 @@ public class Driver{
 	}else{
 	    System.out.println("gimme name of .dat file");
 	}
+
+	int a = 1;
+	String b = "" + a;
+	System.out.println(a);
+	System.out.println(b);
     }    
 }
