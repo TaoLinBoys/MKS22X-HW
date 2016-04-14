@@ -1,19 +1,18 @@
+import java.util.*;
+
 public class Driver{
     public static void main(String[]args){
 	if(args.length > 0){
+
+
+	    //testing BFS & DFS - it works
 	    BetterMaze test = new BetterMaze(args[0]);
-	    System.out.println(test);
+	    
 	    test.setAnimate(true);
 	    test.solveBFS();
+	    //test.solveDFS();
 	    System.out.println(test);
-
-	    
-	    /*
-	    BetterMaze test2 = new BetterMaze(args[0]);
-	    System.out.println(test2);
-	    test.solveDFS();
-	    System.out.println(test2);
-	    */
+	    System.out.println(Arrays.toString(test.solutionCoordinates()));
 
 	    
 	}else{

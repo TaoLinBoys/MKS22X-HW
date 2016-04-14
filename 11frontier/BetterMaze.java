@@ -34,7 +34,20 @@ public class BetterMaze{
      *Postcondition:  the correct solution is in the returned array
     **/
     public int[] solutionCoordinates(){
-              
+	MyQueue<Integer> listOfInts = new MyQueue<Integer>();
+	Node current = placesToGo.next();
+	while(current != null){
+	    listOfInts.enqueue(current.getValue()[0]);
+	    listOfInts.enqueue(current.getValue()[1]);
+	    current = current.getPrev();
+	}
+
+	solution = new int[listOfInts.size()];
+	for(int i = 0; i < solution.length; i++){
+	    solution[i] = listOfInts.dequeue();
+	}
+	
+	
 	return solution;
     }    
 
@@ -74,6 +87,13 @@ public class BetterMaze{
 		placesToGo.add(neigh);
 		maze[x][y] = '.';
 	    }
+	    
+	    if(animate){
+		wait(100);
+		clearTerminal();
+	    	System.out.println(toString());
+	    }
+	    
 	}
 	return false;
     }
@@ -83,16 +103,16 @@ public class BetterMaze{
 	int col = current.getValue()[1];
         ArrayList<Node> neighbors = new ArrayList<Node>();
 
-	if((maze[row+1][col] != '#') && (row+1 < maze.length) && (maze[row+1][col] != '.')){
+	if(maze[row+1][col] == ' ' || maze[row+1][col] == 'E'){
 	    neighbors.add(new Node(row+1,col,current));
 	}
-	if((maze[row-1][col] != '#') && (row-1 > 0) && (maze[row-1][col] != '.')){
+	if(maze[row-1][col] == ' ' || maze[row-1][col] == 'E'){
 	    neighbors.add(new Node(row-1,col,current));
 	}
-	if((maze[row][col+1] != '#') && (col+1 < maze[0].length) && (maze[row][col+1] != '.')){
+	if(maze[row][col+1] == ' ' || maze[row][col+1] == 'E'){
 	    neighbors.add(new Node(row,col+1,current));
 	}
-	if((maze[row][col-1] != '#') && (col-1 > 0) && (maze[row][col-1] != '.')){
+	if(maze[row][col-1] == ' ' || maze[row][col-1] == 'E'){
 	    neighbors.add(new Node(row,col-1,current));
 	}
 	return neighbors;
