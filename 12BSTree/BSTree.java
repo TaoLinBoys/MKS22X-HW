@@ -1,8 +1,8 @@
 import java.util.*;
 public class BSTree<T extends Comparable<T>>{
-    public int compareTo(Node tree){
-	return Integer.compare(this.getData(), tree.getData());
-    }
+    /*public int compareTo(Node tree){
+	return Math.signum(this.getData() - tree.getData());
+	}*/
     
     private class Node{
 	T data;
@@ -36,7 +36,20 @@ public class BSTree<T extends Comparable<T>>{
 	    }
 	}
 	public String toString(){
-	    return "";
+	    String Tree = "";
+	    if(right == null && left == null){
+		Tree += data + "__";
+	    }
+	    if(right != null && left == null){
+		Tree += data + "_" + right.toString();
+	    }
+	    if(left != null && right == null){
+	        Tree += data + left.toString() + "_";
+	    }
+	    if(left != null && right != null){
+		Tree += data + left.toString() + right.toString();
+	    }
+	    return Tree;
 	}
 	public boolean contains(T value){
 	    return false;
@@ -53,10 +66,15 @@ public class BSTree<T extends Comparable<T>>{
 
     public void add(T value){
 	//check for empty before you do things with root.
+	if(root == null){
+	    root = new Node(value);
+	}else{
+	    root.add(value);
+	}
     }
     public String toString(){
 	//check for empty before you do things with root.
-	return "";
+        return root.toString();
     }
     public boolean contains(T value){
 	//check for empty before you do things with root.
