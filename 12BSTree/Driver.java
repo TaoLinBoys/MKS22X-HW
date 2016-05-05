@@ -8,6 +8,9 @@ public class Driver{
 	test.add(1);
 	//System.out.println(test);
 	test.add(3);
+	test.add(0);
+	test.add(21);
+	test.add(12);
 	System.out.println(test);
 
 

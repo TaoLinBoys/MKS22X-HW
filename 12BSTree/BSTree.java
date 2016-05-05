@@ -26,15 +26,20 @@ public class BSTree<T extends Comparable<T>>{
 	}
 	
 	public int height(){
-	    int treeHeight = 1;
+	    int rightH = 0;
+	    int leftH = 0;
 	    if(left == null && right == null){
 		return 1;
 	    }else if(right != null){
-		treeHeight += right.height();
+		rightH += right.height();
 	    }else if(left != null){
-		treeHeight += left.height();
+		leftH += left.height();
 	    }
-	    return treeHeight;
+
+	    if(rightH > leftH){
+		return rightH + 1;
+	    }
+	    return leftH + 1;
 	}
 	
 	public void add(T value){
