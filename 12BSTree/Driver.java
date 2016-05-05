@@ -3,7 +3,7 @@ public class Driver{
 	BSTree<Integer> test = new BSTree<Integer>();
         test.add(5);
 	System.out.println(test);
-	test.add(7);
+	test.add(2);
 	System.out.println(test);
 	test.add(1);
 	System.out.println(test);

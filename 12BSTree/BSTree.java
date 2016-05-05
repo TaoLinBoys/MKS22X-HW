@@ -1,15 +1,11 @@
 import java.util.*;
-public class BSTree<T extends Comparable<T>>{
-    /*public int compareTo(Node tree){
-	return Math.signum(this.getData() - tree.getData());
-	}*/
-    
+public class BSTree<T extends Comparable<T>>{    
     private class Node{
 	T data;
 	Node right, left;
 	boolean DEBUG = true;
 	
-	public void debug(int i){System.out.println(i);}
+	public void debug(String i){System.out.println(i);}
 
 	public void setData(T d){ data = d; }
 	public void setRight(Node r){ right = r; }
@@ -33,24 +29,36 @@ public class BSTree<T extends Comparable<T>>{
 	}
 	public void add(T value){
 	    if(value.compareTo(data) < 0){
-		setLeft(new Node(value));
+	        if(left != null){
+		    left.add(value);
+		}else{
+		    setLeft(new Node(value));
+		}
 	    }else{
-		setRight(new Node(value));
+		if(right != null){
+		    right.add(value);
+		}else{
+		    setRight(new Node(value));
+		}
 	    }
 	}
 	public String toString(){
 	    String Tree = "";
 	    if(right == null && left == null){
 		Tree += data + "__";
+		//debug(" null " + Tree);
 	    }
 	    if(right != null && left == null){
 		Tree += data + "_" + right.toString();
+		//debug(" right " + Tree);
 	    }
 	    if(left != null && right == null){
 	        Tree += data + left.toString() + "_";
+		//debug(" left " + Tree);
 	    }
 	    if(left != null && right != null){
 		Tree += data + left.toString() + right.toString();
+	        //debug(" both " + Tree);
 	    }
 	    return Tree;
 	}
@@ -58,6 +66,19 @@ public class BSTree<T extends Comparable<T>>{
 	    return false;
 	}
     }
+
+
+
+
+
+
+
+
+
+
+
+
+    
     private Node root;
 
     //OUTER methods here are wrapper methods for the root
