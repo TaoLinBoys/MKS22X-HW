@@ -9,7 +9,7 @@ public class BSTree<T extends Comparable<T>>{
 	Node right, left;
 	boolean DEBUG = true;
 	
-	public void debug(int i){System.out.println(i);}
+	public void debug(String i){System.out.println(i);}
 
 	public void setData(T d){ data = d; }
 	public void setRight(Node r){ right = r; }
