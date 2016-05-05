@@ -10,5 +10,11 @@ public class Driver{
 	test.add(3);
 	System.out.println(test);
 
+	System.out.println(test.contains(5));
+	System.out.println(test.contains(2));
+	System.out.println(test.contains(1));
+	System.out.println(test.contains(3));
+	System.out.println(test.contains(70000));
+
     }
 }

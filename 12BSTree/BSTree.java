@@ -5,7 +5,8 @@ public class BSTree<T extends Comparable<T>>{
 	Node right, left;
 	boolean DEBUG = true;
 	
-	public void debug(String i){System.out.println(i);}
+	public void debug(T i){System.out.println(i);}
+	public void debug(int i){System.out.println(i);}
 
 	public void setData(T d){ data = d; }
 	public void setRight(Node r){ right = r; }
@@ -63,33 +64,25 @@ public class BSTree<T extends Comparable<T>>{
 	    return Tree;
 	}
 	public boolean contains(T value){
+	    if(data.compareTo(value) == 0){
+		return true;
+	    }else if(data.compareTo(value) > 0 && left != null){
+		return left.contains(value);
+	    }else if(right!= null){
+		return right.contains(value);
+	    }
 	    return false;
 	}
     }
 
-
-
-
-
-
-
-
-
-
-
-
-    
+   
     private Node root;
 
-    //OUTER methods here are wrapper methods for the root
     public int getHeight(){
-	//call the root's methods
-	//check for empty first!
 	return root.height();
     }
 
     public void add(T value){
-	//check for empty before you do things with root.
 	if(root == null){
 	    root = new Node(value);
 	}else{
@@ -97,12 +90,18 @@ public class BSTree<T extends Comparable<T>>{
 	}
     }
     public String toString(){
-	//check for empty before you do things with root.
-        return root.toString();
+	if (root == null){
+	    return "";
+	}else{
+	    return root.toString();
+	}
     }
     public boolean contains(T value){
-	//check for empty before you do things with root.
-	return false;
+	if(root == null){
+	    return false;
+	}else{
+	    return root.contains(value);
+	}
     }
     
 }
