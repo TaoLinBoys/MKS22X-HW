@@ -1,15 +1,14 @@
 import java.util.*;
-public class BSTree<T extends Comparable<T>>{
-    /*public int compareTo(Node tree){
-	return Math.signum(this.getData() - tree.getData());
-	}*/
-    
+public class BSTree<T extends Comparable<T>>{    
     private class Node{
 	T data;
 	Node right, left;
 	boolean DEBUG = true;
 	
-	public void debug(String i){System.out.println(i);}
+
+	public void debug(T i){System.out.println(i);}
+	public void debug(int i){System.out.println(i);}
+
 
 	public void setData(T d){ data = d; }
 	public void setRight(Node r){ right = r; }
@@ -29,46 +28,83 @@ public class BSTree<T extends Comparable<T>>{
 	}
 	
 	public int height(){
-	    return 0;
+	    int rightH = 0;
+	    int leftH = 0;
+	    if(left == null && right == null){
+		return 1;
+	    }else if(right != null){
+		rightH += right.height();
+	    }else if(left != null){
+		leftH += left.height();
+	    }
+
+	    if(rightH > leftH){
+		return rightH + 1;
+	    }
+	    return leftH + 1;
 	}
+	
 	public void add(T value){
 	    if(value.compareTo(data) < 0){
-		setLeft(new Node(value));
+	        if(left != null){
+		    left.add(value);
+		}else{
+		    setLeft(new Node(value));
+		}
 	    }else{
-		setRight(new Node(value));
+		if(right != null){
+		    right.add(value);
+		}else{
+		    setRight(new Node(value));
+		}
 	    }
 	}
+	
 	public String toString(){
 	    String Tree = "";
 	    if(right == null && left == null){
 		Tree += data + "__";
+		//debug(" null " + Tree);
 	    }
 	    if(right != null && left == null){
 		Tree += data + "_" + right.toString();
+		//debug(" right " + Tree);
 	    }
 	    if(left != null && right == null){
 	        Tree += data + left.toString() + "_";
+		//debug(" left " + Tree);
 	    }
 	    if(left != null && right != null){
 		Tree += data + left.toString() + right.toString();
+	        //debug(" both " + Tree);
 	    }
 	    return Tree;
 	}
+	
 	public boolean contains(T value){
+	    if(data.compareTo(value) == 0){
+		return true;
+	    }else if(data.compareTo(value) > 0 && left != null){
+		return left.contains(value);
+	    }else if(right!= null){
+		return right.contains(value);
+	    }
 	    return false;
 	}
     }
+
+   
     private Node root;
 
-    //OUTER methods here are wrapper methods for the root
     public int getHeight(){
-	//call the root's methods
-	//check for empty first!
-	return root.height();
+	if(root == null){
+	    return 0;
+	}else{
+	    return root.height();
+	}
     }
 
     public void add(T value){
-	//check for empty before you do things with root.
 	if(root == null){
 	    root = new Node(value);
 	}else{
@@ -76,12 +112,18 @@ public class BSTree<T extends Comparable<T>>{
 	}
     }
     public String toString(){
-	//check for empty before you do things with root.
-        return root.toString();
+	if (root == null){
+	    return "";
+	}else{
+	    return root.toString();
+	}
     }
     public boolean contains(T value){
-	//check for empty before you do things with root.
-	return false;
+	if(root == null){
+	    return false;
+	}else{
+	    return root.contains(value);
+	}
     }
     
 }
