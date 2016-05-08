@@ -10,36 +10,52 @@ public class MyHeap<T extends Comparable<T>>
 	size = 0;
     }
     public MyHeap(T[] array){
-	data = array;
-	heapify();
 	size = array.length;
+	data = (T[])(new Comparable[size + 1]);
+	for(int i = 0; i < size; i++){
+	    data[i+1] = array[i];
+	}
+	heapify();
     }
 
     private void swap(int x, int y){
-	int temp = x;
+	T temp = data[x];
 	data[x] = data[y];
-	data[y] = data[temp];
+	data[y] = temp;
     }
 
-    private void pushDown(int k){ //code requires there to be two children
-	int childLeft = k*2;      //need to fix that
+    private void pushDown(int k){
+	int childLeft = k*2;      
 	int childRight = k*2+1;
 	int biggest = 0;
-	if(data[childLeft].compareTo(data[childRight]) > 0){
+
+	//gotta find the biggest child
+	if(childLeft > data.length && childRight > data.length){
+	    //do nothing    
+	}else if(childLeft < data.length && childRight > data.length){
 	    biggest = childLeft;
-	}else{
+	}else if(childLeft > data.length && childRight < data.length){
 	    biggest = childRight;
+	}else{
+	    if(data[childLeft].compareTo(data[childRight]) > 0){
+		biggest = childLeft;
+	    }else{
+		biggest = childRight;
+	    }
 	}
-	if(data[k].compareTo(data[biggest]) < 0){
-	    swap(k, biggest);
+
+	//swapping the things
+	if(biggest != 0){
+	    swap(biggest, k);
+	    pushDown(biggest);
 	}
-	pushDown(biggest); //keeps doing this until its in the right place
     }
 
-    private void pushUp(int k){ //this one too
+    private void pushUp(int k){
 	int parent = k/2;
 	if(data[k].compareTo(data[parent]) > 0){
 	    swap(k, parent);
+	    pushUp(parent);
 	}
     }
 
