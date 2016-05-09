@@ -60,11 +60,13 @@ public class MyHeap<T extends Comparable<T>>
     }
 
     private void heapify(){
-	
+	for(int i = size/2; i > 0; i--){
+	    pushDown(i);
+	}
     }
     
     public T delete(){
-	return data[0];
+        
     }
 
     public void add(T x){
