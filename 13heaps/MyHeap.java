@@ -4,7 +4,7 @@ public class MyHeap<T extends Comparable<T>>
 {
     private int size;
     private T[] data;
-    public boolean MAXHEAP = true;
+    public boolean ISMAX = true;
 
     public MyHeap(){
 	data = (T[])(new Comparable[15]);
@@ -38,10 +38,19 @@ public class MyHeap<T extends Comparable<T>>
 	}else if(childLeft > data.length && childRight < data.length){
 	    biggest = childRight;
 	}else{
-	    if(data[childLeft].compareTo(data[childRight]) > 0){
-		biggest = childLeft;
+
+	    if(ISMAX){
+		if(data[childLeft].compareTo(data[childRight]) > 0){
+		    biggest = childLeft;
+		}else{
+		    biggest = childRight;
+		}
 	    }else{
-		biggest = childRight;
+		if(data[childLeft].compareTo(data[childRight]) < 0){
+		    biggest = childLeft;
+		}else{
+		    biggest = childRight;
+		}
 	    }
 	}
 
@@ -50,13 +59,20 @@ public class MyHeap<T extends Comparable<T>>
 	    swap(biggest, k);
 	    pushDown(biggest);
 	}
-    }
+e    }
 
     private void pushUp(int k){
 	int parent = k/2;
-	if(data[k].compareTo(data[parent]) > 0){
-	    swap(k, parent);
-	    pushUp(parent);
+	if(MAXHEAP){
+	    if(data[k].compareTo(data[parent]) > 0){
+		swap(k, parent);
+		pushUp(parent);
+	    }
+	}else{
+	    if(data[k].compareTo(data[parent]) < 0){
+		swap(k, parent);
+		pushUp(parent);
+	    }
 	}
     }
 
@@ -113,11 +129,11 @@ public class MyHeap<T extends Comparable<T>>
     //do this last
     public MyHeap(boolean isMax){
 	this();
-	MAXHEAP = isMax;
+	ISMAX = isMax;
     }
     public MyHeap(T[] array, boolean isMax){
 	this(array);
-	MAXHEAP = isMax;
+        ISMAX = isMax;
     }
 
 }
