@@ -4,9 +4,10 @@ public class MyHeap<T extends Comparable<T>>
 {
     private int size;
     private T[] data;
+    public boolean MAXHEAP = true;
 
     public MyHeap(){
-	data = (T[])(new Comparable[10]);
+	data = (T[])(new Comparable[15]);
 	size = 0;
     }
     public MyHeap(T[] array){
@@ -66,22 +67,57 @@ public class MyHeap<T extends Comparable<T>>
     }
     
     public T delete(){
-        
+	if(size == 0)throw new NoSuchElementException();
+	
+	T first = data[1];
+	
+	for(int i = 0; i < size; i++){
+	    data[i] = data[i+1];
+	}
+	data[size] = null;
+	size--;
+	heapify();
+	
+	return first;
+    }
+
+    public T peek(){
+	if(size == 0)throw new NoSuchElementException();
+	return data[1];
     }
 
     public void add(T x){
-	
+	if(size + 1 == data.length)doubleSize();
+	data[size + 1] = x;
+	size++;
+	pushUp(size);
     }
     
     private void doubleSize(){
-
+	T[] doubled = (T[])(new Comparable[size*2]);
+	for(int i = 1; i < data.length; i++){
+	    doubled[i] = data[i];
+	}
+	data = doubled;
     }
+    
     public String toString(){
-	return "";
+	String array = "[ ";
+	for(int i = 1; i < size; i++){
+	    array += data[i] + ", ";
+	}
+	array += data[size] + " ]";
+	return array;
     }
 
     //do this last
-    public MyHeap(boolean isMax){}
-    public MyHeap(T[] array, boolean isMax){}
+    public MyHeap(boolean isMax){
+	this();
+	MAXHEAP = isMax;
+    }
+    public MyHeap(T[] array, boolean isMax){
+	this(array);
+	MAXHEAP = isMax;
+    }
 
 }
