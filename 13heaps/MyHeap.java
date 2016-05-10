@@ -59,16 +59,16 @@ public class MyHeap<T extends Comparable<T>>
 	    swap(biggest, k);
 	    pushDown(biggest);
 	}
-e    }
+    }
 
     private void pushUp(int k){
 	int parent = k/2;
-	if(MAXHEAP){
+	if(ISMAX && parent != 0){
 	    if(data[k].compareTo(data[parent]) > 0){
 		swap(k, parent);
 		pushUp(parent);
 	    }
-	}else{
+	}else if(!ISMAX && parent!= 0){
 	    if(data[k].compareTo(data[parent]) < 0){
 		swap(k, parent);
 		pushUp(parent);
