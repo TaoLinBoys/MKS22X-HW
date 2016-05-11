@@ -4,7 +4,7 @@ public class MyHeap<T extends Comparable<T>>
 {
     private int size;
     private T[] data;
-    public boolean ISMAX = true;
+    private boolean ISMAX = true;
 
     public MyHeap(){
 	data = (T[])(new Comparable[15]);
@@ -134,6 +134,10 @@ public class MyHeap<T extends Comparable<T>>
     public MyHeap(T[] array, boolean isMax){
 	this(array);
         ISMAX = isMax;
+    }
+
+    public int size(){
+	return size;
     }
 
 }

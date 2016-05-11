@@ -1,17 +1,72 @@
+import java.util.*;
 public class RunningMedian{
-    MyHeap<Integer> lowerTM;
-    MyHeap<Integer> higherTM;
+    private MyHeap<Integer> SmallValue; //everything smaller than median
+    private MyHeap<Integer> BigValue; //everything bigger than median
+    private double median;
+
+    private boolean DEBUG = true;
+    public void debug(String i){
+	if(DEBUG)System.out.println(i);
+    }
+    
     
     public RunningMedian(){
-	lowerTM = new MyHeap<Integer>();
-	higherTM = new MyHeap<Integer>();
+	SmallValue = new MyHeap<Integer>(true); //maxheap
+	BigValue = new MyHeap<Integer>(false);  //minheap
     }
 
     public double getMedian(){
-	return 1.0;
+        if(SmallValue.size() == 0 && BigValue.size() == 0){
+	    throw new NoSuchElementException();
+	}
+
+	if(SmallValue.size() > BigValue.size()){
+	    median = (double)SmallValue.peek();
+	}else if(SmallValue.size() < BigValue.size()){
+	    median = (double) BigValue.peek();
+	}else{
+	    Integer small = SmallValue.peek();
+	    Integer big = BigValue.peek();
+	    median = (small + big)/2.0;
+	}
+	return median;
     }
 
     public void add(Integer x){
-	
+	if(x < median){
+	    SmallValue.add(x);
+	}else{
+	    BigValue.add(x);
+	}
+	debug(SmallValue.toString());
+	debug(BigValue.toString());
+	debug(" ");
+	balance();
+    }
+
+    private void balance(){
+	if(SmallValue.size() > BigValue.size() + 1){
+	    Integer removed = SmallValue.delete();
+	    BigValue.add(removed);
+	}else if(SmallValue.size() + 1 < BigValue.size()){
+	    Integer removed = BigValue.delete();
+	    SmallValue.add(removed);
+	}
+    }
+
+    public String toString(){
+	return "Small Values: " + SmallValue.toString() +
+	    "\nBig Values: " + BigValue.toString();
+    }
+
+    public static void main(String[]args){
+	RunningMedian test = new RunningMedian();
+	test.getMedian();
+	test.add(5);
+	test.add(7);
+	test.add(9);
+	test.add(2);
+	System.out.println(test);
+	System.out.println(test.getMedian());
     }
 }
