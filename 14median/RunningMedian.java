@@ -38,10 +38,15 @@ public class RunningMedian{
 	}else{
 	    BigValue.add(x);
 	}
+
+	
 	debug(SmallValue.toString());
 	debug(BigValue.toString());
 	debug(" ");
+
+	
 	balance();
+	getMedian(); //sets the median
     }
 
     private void balance(){
@@ -61,11 +66,10 @@ public class RunningMedian{
 
     public static void main(String[]args){
 	RunningMedian test = new RunningMedian();
-	test.getMedian();
 	test.add(5);
 	test.add(7);
 	test.add(9);
-	test.add(2);
+	test.add(10);
 	System.out.println(test);
 	System.out.println(test.getMedian());
     }

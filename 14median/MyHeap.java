@@ -119,11 +119,10 @@ public class MyHeap<T extends Comparable<T>>
     
     public String toString(){
 	String array = "[ ";
-	for(int i = 1; i < size; i++){
-	    array += data[i] + ", ";
+	for(int i = 1; i < size + 1; i++){
+	    array += data[i] + " ";
 	}
-	array += data[size] + " ]";
-	return array;
+	return array + "]";
     }
 
     //do this last
