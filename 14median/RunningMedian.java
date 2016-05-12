@@ -1,7 +1,6 @@
 import java.util.*;
 public class RunningMedian{
-    private MyHeap<Integer> SmallValue; //everything smaller than median
-    private MyHeap<Integer> BigValue; //everything bigger than median
+    private MyHeap<Integer> SmallValue, BigValue; 
     private double median;
 
     private boolean DEBUG = true;
@@ -11,7 +10,7 @@ public class RunningMedian{
     
     
     public RunningMedian(){
-	SmallValue = new MyHeap<Integer>(true); //maxheap
+	SmallValue = new MyHeap<Integer>(); //maxheap
 	BigValue = new MyHeap<Integer>(false);  //minheap
     }
 

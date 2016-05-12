@@ -4,7 +4,7 @@ public class MyHeap<T extends Comparable<T>>
 {
     private int size;
     private T[] data;
-    private boolean ISMAX = true;
+    public boolean ISMAX = true;
 
     public MyHeap(){
 	data = (T[])(new Comparable[15]);
@@ -17,6 +17,15 @@ public class MyHeap<T extends Comparable<T>>
 	    data[i+1] = array[i];
 	}
 	heapify();
+    }
+
+    public MyHeap(boolean isMax){
+	this();
+	ISMAX = isMax;
+    }
+    public MyHeap(T[] array, boolean isMax){
+	this(array);
+        ISMAX = isMax;
     }
 
     private void swap(int x, int y){
@@ -86,14 +95,8 @@ public class MyHeap<T extends Comparable<T>>
 	if(size == 0)throw new NoSuchElementException();
 	
 	T first = data[1];
-	
-	for(int i = 0; i < size; i++){
-	    data[i] = data[i+1];
-	}
-	data[size] = null;
-	size--;
-	heapify();
-	
+        data[1] = data[size--];
+	pushDown(1);
 	return first;
     }
 
@@ -119,24 +122,13 @@ public class MyHeap<T extends Comparable<T>>
     
     public String toString(){
 	String array = "[ ";
-	for(int i = 1; i < size + 1; i++){
+	for(int i = 1; i < size; i++){
 	    array += data[i] + " ";
 	}
 	return array + "]";
     }
 
-    //do this last
-    public MyHeap(boolean isMax){
-	this();
-	ISMAX = isMax;
-    }
-    public MyHeap(T[] array, boolean isMax){
-	this(array);
-        ISMAX = isMax;
-    }
-
     public int size(){
 	return size;
     }
-
 }
